@@ -1,22 +1,27 @@
-import { Controller, Get, Query, Redirect, Res } from '@nestjs/common';
-import { AuthService } from '../services/auth.service';
+import { Controller, Get, HttpCode, Query, Redirect } from '@nestjs/common';
+import { SpotifyAuthService } from '../services/spotify-auth.service';
+import { IAuthenticatedDTO } from '../interfaces/auth-dto';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private authService: SpotifyAuthService) {}
 
-  @Get()
-  @Redirect()
-  async authenticate(@Query('code') code: string) {
-    const accessToken = await this.authService.authenticate(code);
+  @Get('callback')
+  @HttpCode(200)
+  async authenticate(@Query('code') code: string): Promise<IAuthenticatedDTO> {
+    const authenticated = await this.authService.authenticate(code);
 
-    return { url: '/home', access_token: accessToken };
+    return authenticated;
   }
 
   @Get('spotify')
+  @Redirect()
+  @HttpCode(200)
   async authorize() {
     const url = await this.authService.authorize();
 
-    return url;
+    return {
+      url,
+    };
   }
 }
