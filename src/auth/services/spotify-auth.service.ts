@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { IAuthProvider } from 'src/modules/Auth/interfaces/auth-provider';
+import { IAuthProvider } from 'src/auth/interfaces/auth-provider';
 import SpotifyWebApi from 'spotify-web-api-node';
 import { randomBytes as random } from 'crypto';
-import { IAuthenticatedDTO } from '../interfaces/auth-dto';
+import { IAuthenticatedDTO } from '../dto/auth-dto';
 
 Injectable();
 export class SpotifyAuthService implements IAuthProvider {

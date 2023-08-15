@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { AuthController } from './controllers/auth.controller';
+import { AuthController } from './auth.controller';
 import { SpotifyAuthService } from './services/spotify-auth.service';
 
 @Module({

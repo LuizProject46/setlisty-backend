@@ -1,6 +1,6 @@
 import { Controller, Get, HttpCode, Query, Redirect } from '@nestjs/common';
-import { SpotifyAuthService } from '../services/spotify-auth.service';
-import { IAuthenticatedDTO } from '../interfaces/auth-dto';
+import { SpotifyAuthService } from './services/spotify-auth.service';
+import { IAuthenticatedDTO } from './dto/auth-dto';
 
 @Controller('auth')
 export class AuthController {
